@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Professional Productivity Hub — organize work, research, writing, and AI-assisted workflows in one place." />
+  <title>AI Professional Productivity Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✦</span><div><strong>AI Productivity Hub</strong><small>Professional workspace</small></div></div>
+    <button id="focusBtn" class="ghost-btn">Focus mode</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR AI WORKSPACE</p>
+        <h1>Turn ideas into <span>finished work.</span></h1>
+        <p class="hero-copy">A focused workspace for planning, research, writing, and AI-assisted professional tasks.</p>
+      </div>
+      <div class="date-card"><span id="today"></span><strong id="taskCount">0 tasks</strong></div>
+    </section>
+
+    <section class="grid">
+      <article class="card task-card">
+        <div class="card-head"><div><p class="eyebrow">TODAY</p><h2>Priority tasks</h2></div><button id="addTask" class="primary-btn">+ Add task</button></div>
+        <div id="tasks" class="tasks"></div>
+      </article>
+
+      <article class="card quick-card">
+        <p class="eyebrow">QUICK START</p><h2>Choose a workflow</h2>
+        <div class="workflow-list">
+          <button class="workflow" data-template="Research brief"><b>🔎 Research brief</b><span>Structure a research task</span></button>
+          <button class="workflow" data-template="Professional report"><b>📝 Professional report</b><span>Plan and draft a report</span></button>
+          <button class="workflow" data-template="AI task plan"><b>⚡ AI task plan</b><span>Break a complex task into steps</span></button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card notes-card">
+      <div class="card-head"><div><p class="eyebrow">WORKSPACE</p><h2>Scratchpad</h2></div><span class="save-status" id="saveStatus">Saved locally</span></div>
+      <textarea id="notes" placeholder="Capture an idea, research question, meeting note, or next action..."></textarea>
+    </section>
+  </main>
+
+  <dialog id="taskDialog">
+    <form method="dialog" id="taskForm">
+      <h2>Add a task</h2><input id="taskInput" required maxlength="100" placeholder="e.g. Finish research proposal" />
+      <div class="dialog-actions"><button value="cancel" class="ghost-btn">Cancel</button><button value="default" class="primary-btn">Add task</button></div>
+    </form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
