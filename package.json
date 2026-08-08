@@ -1,0 +1,9 @@
+{
+  "name": "ai-professional-productivity-hub",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Browser-based AI professional productivity workspace MVP",
+  "scripts": {
+    "check": "node --check app.js && node --check tools.js && node --check research.js && node --check drafting.js && node --check prompts.js"
+  }
+}
