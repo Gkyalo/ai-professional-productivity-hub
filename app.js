@@ -1,0 +1,8 @@
+const $=s=>document.querySelector(s);const notes=$("#notes"),tasksEl=$("#tasks"),dialog=$("#taskDialog"),taskInput=$("#taskInput");
+let tasks=JSON.parse(localStorage.getItem("aph_tasks")||"[]");
+const save=()=>{localStorage.setItem("aph_tasks",JSON.stringify(tasks));render()};
+function render(){tasksEl.innerHTML="";tasks.forEach((t,i)=>{const row=document.createElement("div");row.className=`task ${t.done?"done":""}`;row.innerHTML=`<input type="checkbox" ${t.done?"checked":""} aria-label="Complete task"><span></span><button class="delete" aria-label="Delete task">×</button>`;row.querySelector("span").textContent=t.text;row.querySelector("input").onchange=()=>{tasks[i].done=!tasks[i].done;save()};row.querySelector(".delete").onclick=()=>{tasks.splice(i,1);save()};tasksEl.appendChild(row)});$("#taskCount").textContent=`${tasks.filter(t=>!t.done).length} open task${tasks.filter(t=>!t.done).length===1?"":"s"}`}
+$("#addTask").onclick=()=>{taskInput.value="";dialog.showModal();taskInput.focus()};$("#taskForm").onsubmit=e=>{e.preventDefault();tasks.unshift({text:taskInput.value.trim(),done:false});dialog.close();save()};
+document.querySelectorAll(".workflow").forEach(b=>b.onclick=()=>{tasks.unshift({text:b.dataset.template,done:false});save()});
+notes.value=localStorage.getItem("aph_notes")||"";notes.oninput=()=>{localStorage.setItem("aph_notes",notes.value);$("#saveStatus").textContent="Saving…";clearTimeout(window.noteTimer);window.noteTimer=setTimeout(()=>$("#saveStatus").textContent="Saved locally",400)};
+$("#focusBtn").onclick=()=>document.body.classList.toggle("focus-mode");$("#today").textContent=new Intl.DateTimeFormat(undefined,{weekday:"long",month:"short",day:"numeric"}).format(new Date());render();
